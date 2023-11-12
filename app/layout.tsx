@@ -5,6 +5,7 @@ import { Inter as FontSans } from "next/font/google";
 import LocalFont from "next/font/local";
 
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -35,7 +36,21 @@ export default function RootLayout({
           calSans.variable
         )}
       >
-        {children}
+        <main className="flex min-h-screen flex-col items-center text-foreground mx-auto w-8/12 p-10">
+          <div className="flex w-full justify-between">
+            <Link href="/">
+              <div className="font-display text-3xl">Secret</div>
+            </Link>
+            <a
+              href="https://github.com/dephraiim/secret"
+              className="text-xl text-foreground/60 hover:underline cursor-pointer"
+            >
+              Github
+            </a>
+          </div>
+
+          {children}
+        </main>
       </body>
     </html>
   );

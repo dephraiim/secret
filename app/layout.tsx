@@ -2,11 +2,18 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import { Inter as FontSans } from "next/font/google";
+import LocalFont from "next/font/local";
+
 import { cn } from "@/lib/utils";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
+});
+
+const calSans = LocalFont({
+  src: "../public/fonts/CalSans-SemiBold.ttf",
+  variable: "--font-calsans",
 });
 
 export const metadata: Metadata = {
@@ -23,8 +30,9 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
+          "dark min-h-screen bg-background font-sans antialiased",
+          fontSans.variable,
+          calSans.variable
         )}
       >
         {children}

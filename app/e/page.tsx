@@ -8,16 +8,37 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import React from "react";
 import { useFormState, useFormStatus } from "react-dom";
+import { ZodIssue } from "zod";
+import { toast } from "sonner";
 
-const initialState: { encrypted: boolean | null; id: string | null } = {
+const initialState: {
+  encrypted: boolean | null;
+  id: string | null;
+  error: ZodIssue[] | string | null;
+} = {
   encrypted: null,
   id: null,
+  error: null,
 };
 
 export default function EncryptSecretPage() {
   const { pending } = useFormStatus();
+  const status = useFormStatus();
 
   const [state, formAction] = useFormState(encryptAction, initialState);
+
+  if (state.error instanceof Array) {
+    state.error.forEach((err) =>
+      toast.error(
+        (err.path[0] as string)[0].toUpperCase() +
+          (err.path[0] as string).slice(1),
+        {
+          duration: 5000,
+          description: err.message,
+        }
+      )
+    );
+  }
 
   if (state.encrypted) {
     return (

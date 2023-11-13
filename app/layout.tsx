@@ -3,7 +3,7 @@ import "./globals.css";
 
 import { Inter as FontSans } from "next/font/google";
 import LocalFont from "next/font/local";
-
+import { Toaster } from "sonner";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -50,6 +50,7 @@ export default function RootLayout({
           </div>
 
           {children}
+          <Toaster />
         </main>
       </body>
     </html>

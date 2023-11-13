@@ -49,7 +49,7 @@ export default function EncryptSecretPage() {
         <p>Everything is ready, here is the link to your secret.</p>
 
         <div className="border border-foreground p-2 px-4 rounded-xl flex gap-4 hover:text-foreground/60 hover:border-foreground/60">
-          <p className="font-code">https://localhost:3000/s/{state.id}</p>
+          <p className="font-code">http://localhost:3000/s/{state.id}</p>
 
           <CopyIcon
             strokeWidth={1}
@@ -57,7 +57,7 @@ export default function EncryptSecretPage() {
             className="cursor-pointer hover:text-foreground/80 transition-colors"
             onClick={() => {
               navigator.clipboard.writeText(
-                `https://localhost:3000/s/${state.id}`
+                `http://localhost:3000/s/${state.id}`
               );
               toast.success("Link Copied");
             }}

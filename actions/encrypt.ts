@@ -20,8 +20,8 @@ export async function encryptAction(prevState: any, formData: FormData) {
     const data = schema.parse(Object.fromEntries(formData.entries()));
     const TTL = data.ttl;
 
-    const decryptedKey = await importCryptoKey(process.env.ENCRYPTION_KEY!);
-    const { encryptedData, iv } = await encrypt(data.secret, decryptedKey);
+    const decryptionKey = await importCryptoKey(process.env.ENCRYPTION_KEY!);
+    const { encryptedData, iv } = await encrypt(data.secret, decryptionKey);
 
     const id = nanoid(12);
     const dataToStore = {
@@ -41,9 +41,6 @@ export async function encryptAction(prevState: any, formData: FormData) {
 
     await redis.hmset(`secret:${id}`, dataToStore);
     await redis.expire(`secret:${id}`, expiry);
-
-    //   const decryptedMessage = await decrypt(encryptedData, decryptedKey, iv);
-    //   console.log("Decrypted:", decryptedMessage);
 
     return {
       encrypted: true,

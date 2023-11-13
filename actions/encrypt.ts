@@ -55,7 +55,7 @@ export async function encryptAction(prevState: any, formData: FormData) {
       return {
         encrypted: false,
         id: "",
-        error: error.errors,
+        error: error.errors, // error.flatten(),
       };
     }
 

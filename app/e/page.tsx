@@ -10,6 +10,7 @@ import React from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { ZodIssue } from "zod";
 import { toast } from "sonner";
+import { CopyIcon } from "lucide-react";
 
 const initialState: {
   encrypted: boolean | null;
@@ -42,9 +43,26 @@ export default function EncryptSecretPage() {
 
   if (state.encrypted) {
     return (
-      <div>
-        Encrypted
-        <div>{state.id}</div>
+      <div className="grow p-10 flex items-center flex-col justify-center gap-5">
+        <h1 className="text-5xl font-display text-center">Secret Created</h1>
+
+        <p>Everything is ready, here is the link to your secret.</p>
+
+        <div className="border border-foreground p-2 px-4 rounded-xl flex gap-4 hover:text-foreground/60 hover:border-foreground/60">
+          <p className="font-code">https://localhost:3000/s/{state.id}</p>
+
+          <CopyIcon
+            strokeWidth={1}
+            width={16}
+            className="cursor-pointer hover:text-foreground/80 transition-colors"
+            onClick={() => {
+              navigator.clipboard.writeText(
+                `https://localhost:3000/s/${state.id}`
+              );
+              toast.success("Link Copied");
+            }}
+          />
+        </div>
       </div>
     );
   }

@@ -11,9 +11,9 @@ import {
 
 export function SelectDemo() {
   return (
-    <Select defaultValue="minutes" name="time">
+    <Select defaultValue="hours" name="time">
       <SelectTrigger>
-        <SelectValue placeholder="minutes" />
+        <SelectValue placeholder="Hours" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>

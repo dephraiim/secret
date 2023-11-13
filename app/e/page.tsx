@@ -93,7 +93,7 @@ export default function EncryptSecretPage() {
                 id="ttl"
                 name="ttl"
                 placeholder="24"
-                defaultValue={0}
+                defaultValue={1}
               />
               <SelectDemo />
             </div>

@@ -19,14 +19,14 @@ export default function EncryptSecretPage() {
 
   const [state, formAction] = useFormState(encryptAction, initialState);
 
-  //   if (state.encrypted) {
-  //     return (
-  //       <div>
-  //         Encrypted
-  //         <div>{state.id}</div>
-  //       </div>
-  //     );
-  //   }
+  if (state.encrypted) {
+    return (
+      <div>
+        Encrypted
+        <div>{state.id}</div>
+      </div>
+    );
+  }
 
   return (
     <form className="w-full p-10" action={formAction}>
@@ -49,7 +49,13 @@ export default function EncryptSecretPage() {
           <div className="grid w-full max-w-sm items-center gap-2">
             <Label htmlFor="ttl">TTL</Label>
             <div className="flex w-full max-w-sm items-center space-x-2">
-              <Input type="text" id="ttl" name="ttl" placeholder="24" />
+              <Input
+                type="text"
+                id="ttl"
+                name="ttl"
+                placeholder="24"
+                defaultValue={0}
+              />
               <SelectDemo />
             </div>
           </div>
